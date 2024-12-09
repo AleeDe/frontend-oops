@@ -58,7 +58,7 @@ div .cont-1{
   flex-direction: row;
   align-items: center;
   align-content: center;
-  margin-top: 100px;
+  /* margin-top: 100px; */
 }
 .row {
   margin: 10px auto;

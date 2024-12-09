@@ -1,21 +1,4 @@
-*{
-    margin: 0px;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    height: 100vh;
-    background: linear-gradient(#2A00B7,#42006C);
-  }
-  
-  code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-      monospace;
-  }
-  
+/* Adjust these values based on your navbar's height */
+.main-content {
+  padding-top: 68px; /* Assuming your navbar is 60px tall */
+}

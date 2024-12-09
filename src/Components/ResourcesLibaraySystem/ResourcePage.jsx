@@ -22,13 +22,22 @@ const ResourcePage = () => {
         }
     };
 
-    const downloadFile = (url, filename) => {
+    const downloadFile = (fileData, filename, contentType) => {
+        const byteCharacters = atob(fileData); // Decode base64 to binary
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray], { type: contentType });
+        const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = url;
         link.setAttribute('download', filename);
         document.body.appendChild(link);
         link.click();
-        link.remove();
+        document.body.removeChild(link); // Clean up
+        URL.revokeObjectURL(url); // Release memory
     };
 
     return (
@@ -45,13 +54,9 @@ const ResourcePage = () => {
                         <div className="fileList">
                             {resource.files.map((file, index) => (
                                 <div key={index} className="fileItem">
-                                    {file.header && file.header.startsWith('image/') ? (
-                                        <img src={URL.createObjectURL(new Blob([new Uint8Array(file.data)], { type: file.header }))} alt={file.name} />
-                                    ) : (
-                                        <button onClick={() => downloadFile(URL.createObjectURL(new Blob([new Uint8Array(file.data)], { type: file.header })), file.name)}>
-                                            Download {file.name}
-                                        </button>
-                                    )}
+                                    <button onClick={() => downloadFile(file.data, file.name, file.header)}>
+                                        Download {file.name}
+                                    </button>
                                 </div>
                             ))}
                         </div>

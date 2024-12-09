@@ -44,7 +44,7 @@ const App = () => {
     };
 
     return (
-        <div className="app-container">
+        <>
             {location.pathname !== "/" && location.pathname !== "/signup" && (
                 <NavBar isAuthenticated={isAuthenticated} handleLogout={handleLogout} />
             )}
@@ -89,8 +89,10 @@ const App = () => {
                     <Route path="/features" element={<div>Features</div>} />
                 </Routes>
             </main>
-            {/* <Footer /> */}
-        </div>
+            {location.pathname !== "/" && location.pathname !== "/signup" && (
+                <Footer isAuthenticated={isAuthenticated} handleLogout={handleLogout} />
+            )}
+        </>
     );
 };
 
